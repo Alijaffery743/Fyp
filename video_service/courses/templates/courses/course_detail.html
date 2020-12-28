@@ -1,0 +1,34 @@
+{% extends 'courses/base.html' %}
+{% block post_detail_link %}
+<li>{{object.title}}</li>
+
+{% endblock %}
+    {% block content %}
+
+         <div class="container">
+        <div class="row">
+            <div class="col-sm-4 col-ms-4">
+                
+                <h1>Course Detail Page </h1>
+                    <h3>{{object.title}}</h3>
+                    <p>{{object.description}}</p>
+                    <ol>
+                        {% for lesson in object.lessons %}
+                            <li><a href="{{lesson.get_absolute_url}}">{{lesson.title}} </a></li>
+                        {% endfor %}
+                    
+                    </ol>
+                    
+               
+
+            </div>
+
+        </div>
+    </div>
+       
+        <!--[if lt IE 7]>
+            <p class="browsehappy">You are using an <strong>outdated</strong> browser. Please <a href="#">upgrade your browser</a> to improve your experience.</p>
+        <![endif]-->
+    {% endblock %}
+    
+        

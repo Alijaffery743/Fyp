@@ -1,0 +1,103 @@
+<!DOCTYPE html>
+<!--[if lt IE 7]>      <html class="no-js lt-ie9 lt-ie8 lt-ie7"> <![endif]-->
+<!--[if IE 7]>         <html class="no-js lt-ie9 lt-ie8"> <![endif]-->
+<!--[if IE 8]>         <html class="no-js lt-ie9"> <![endif]-->
+<!--[if gt IE 8]>      <html class="no-js"> <!--<![endif]-->
+<html>
+    <head>
+        <meta charset="utf-8">
+        <meta http-equiv="X-UA-Compatible" content="IE=edge">
+        <title></title>
+        <meta name="description" content="">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+        <link rel="stylesheet" href="">
+        
+        <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css">
+
+         <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/css/materialize.min.css">
+
+    <!-- Compiled and minified JavaScript -->
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/js/materialize.min.js"></script>
+       
+         
+    </head>
+    <body>
+   
+
+       {% load static %}
+       <link rel="stylesheet" href="{% static 'css/image.css' %}" type = "text/css"/>
+
+     {% include 'courses/messages.html' %}
+	<div class="container">
+            <nav>
+        <div class="nav-wrapper">
+        <a href="#" class="brand-logo"><b><small>Intelligent</small>E-learning</a></b>
+        <ul id="nav-mobile" class="right hide-on-med-and-down">
+            <li><a href='/'><b>Home</a></b></li>
+            <li><a href="{% url 'memberships:profile' %}"><b>Profile</a></b></li>
+             {% block post_detail_link %}
+	         {% endblock %}
+             {% if not request.user.is_authenticated %}
+
+	            <li class='pull-right'><a href="{% url 'accounts:signup' %}"><b>Register</a></b></li>
+	            <li class='pull-right'><a href="{% url 'accounts:login' %}"><b>Login</a></b></li>
+	        {% else %}
+	        <li class='pull-right'><a href="/memberships"><b>Memberships</a></b></li>
+            <li class='pull-right'><a href="{% url 'accounts:logout' %}"><b>Log Out</a></b></li>
+
+	        {% endif %}
+            
+        </ul>
+        </div>
+    </nav>
+        
+         
+		
+	{% block content %}
+	{% endblock content %} 
+
+    <footer>
+     <div class="footer-copyright">
+        <div class="container">
+
+        &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+        &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<b>© 2020 Copyright</b> <svg xmlns="http://www.w3.org/2000/svg" x="0px" y="0px"
+width="80" height="80"
+viewBox="0 0 171 171"
+style=" fill:#000000;"><g transform=""><g fill="none" fill-rule="nonzero" stroke="none" stroke-width="none" stroke-linecap="butt" stroke-linejoin="miter" stroke-miterlimit="10" stroke-dasharray="" stroke-dashoffset="0" font-family="none" font-weight="none" font-size="none" text-anchor="none" style="mix-blend-mode: normal"><path d="M0,171.98863v-171.98863h171.98863v171.98863z" fill="none" stroke="none" stroke-width="1"></path><path d="M85.99432,169.78432c-46.27594,0 -83.79,-37.51406 -83.79,-83.79v0c0,-46.27594 37.51406,-83.79 83.79,-83.79h0c46.27594,0 83.79,37.51406 83.79,83.79v0c0,46.27594 -37.51406,83.79 -83.79,83.79z" fill="#cccccc" stroke="none" stroke-width="1"></path><g stroke="none" stroke-width="1"><path d="M124.6838,20.85083c-4.89659,0 -8.87063,3.97404 -8.87063,8.87062v43.70557l-11.17699,-31.40201l-21.36046,-21.35159c-3.45954,-3.45954 -9.07465,-3.45954 -12.53419,0l-0.00887,0.00887c-3.45954,3.45954 -3.45954,9.07465 0,12.53419l17.98076,17.98076l8.39161,23.06363h-0.32821l-19.91455,-25.13935l-24.4297,-11.19473c-4.28451,-1.99589 -9.37625,-0.14193 -11.37214,4.14258l-0.26612,0.56772c-1.99589,4.28451 -0.14193,9.37625 4.14258,11.37214l18.87669,8.64886l7.2473,8.63999h-17.484l-22.17656,22.22979c-3.46841,3.46841 -3.46841,9.08352 0,12.54306c3.46841,3.46841 9.08352,3.46841 12.54306,0l17.0316,-17.0316h9.4827l8.35613,22.95718l-8.41822,8.41822h-1.51688l-7.57551,-7.57551c-5.9788,-5.9788 -15.67439,-5.9788 -21.66207,0l-4.90546,4.90546l23.73779,24.51841h45.94097c16.09131,0 29.14,-13.04869 29.14,-29.14v-83.40162c0,-4.89659 -3.97404,-8.87062 -8.87062,-8.87062z" fill="#333333"></path><path d="M104.41442,146.69838h-47.82154l-28.06666,-29.00694l5.18932,-5.18932c-2.03137,-0.62981 -3.8942,-1.74751 -5.44656,-3.29987c-2.51039,-2.50152 -3.8942,-5.83687 -3.8942,-9.40286c0,-3.54825 1.38382,-6.90135 3.8942,-9.4206l23.47167,-23.51603h9.80204l-0.48788,-0.59433l-17.96302,-8.22307c-6.51991,-3.04262 -9.34077,-10.78668 -6.31589,-17.27998c3.291,-7.06102 11.23021,-9.79317 17.53723,-6.84812l20.021,9.16336l-6.74168,-6.72393c-5.17157,-5.18932 -5.17157,-13.61641 0,-18.80572l0.59433,-0.55885c5.074,-4.50628 13.41238,-4.27564 18.22913,0.54111l22.39833,23.00153l2.56361,7.20295v-18.00737c0,-7.33601 5.96993,-13.30594 13.30594,-13.30594c7.33601,0 13.30594,5.96993 13.30594,13.30594v83.39275c0,18.51299 -15.06232,33.57532 -33.57532,33.57532zM60.35402,137.82776h44.06039c13.62528,0 24.70469,-11.07941 24.70469,-24.70469v-83.40162c0,-2.43942 -1.99589,-4.43531 -4.43531,-4.43531c-2.43942,0 -4.43531,1.99589 -4.43531,4.43531v69.3949l-19.45328,-54.66079l-20.65082,-20.65082c-1.67655,-1.67655 -4.57724,-1.67655 -6.25379,0l-0.17741,0.17741c-1.56123,1.73864 -1.50801,4.42644 0.15967,6.10299l19.01862,19.59521l10.55604,29.01581h-8.48919l-1.64994,-1.67655l-19.25813,-24.30551l-23.4628,-10.76007c-2.12008,-0.95803 -4.57724,-0.01774 -5.50866,1.98702c-1.21528,2.6257 -0.32821,5.08287 1.72977,6.04977l20.40244,9.81091l13.35916,15.93164h-25.15709l-20.87258,20.9258c-0.84271,0.84271 -1.30398,1.96041 -1.30398,3.14907c0,1.17979 0.46127,2.28862 1.29511,3.13133c1.67655,1.66768 4.59498,1.67655 6.2804,0l18.33558,-18.33558h14.43251l10.37863,28.52793l-11.70923,11.70922h-5.20706l-8.87063,-8.87062c-4.1071,-4.1071 -11.27456,-4.1071 -15.38166,0l-1.81848,1.82735zM52.29949,104.00406c4.59498,0.41692 8.84401,2.40394 12.14389,5.70381l5.20706,5.19819l4.03613,-4.03613l-6.32476,-17.3953h-4.54176z" fill="#ba9b48"></path><rect x="9.63481" y="8.53755" transform="scale(8.87062,8.87062)" width="4.49" height="3.063" fill="#333333"></rect></g><path d="" fill="none" stroke="none" stroke-width="1"></path><path d="" fill="none" stroke="none" stroke-width="1"></path><g fill="#cccccc" stroke="none" stroke-width="1"><path d="M89.27,111.45v-1.78l1.53,-0.22l7.21,-18.62h2.39l7.08,18.62l1.51,0.22v1.78h-5.92v-1.78l1.56,-0.27l-1.36,-3.8h-8.25l-1.4,3.8l1.55,0.27v1.78zM99.14,94.42l-3.26,8.85h6.54l-3.2,-8.85zM115.73,96.13v16.58c0,1.58 -0.40333,2.79667 -1.21,3.65c-0.81333,0.85333 -1.94333,1.28 -3.39,1.28v0c-0.3,0 -0.57333,-0.02333 -0.82,-0.07c-0.24667,-0.04 -0.5,-0.10333 -0.76,-0.19v0l0.18,-2.19c0.13333,0.04667 0.32667,0.08667 0.58,0.12c0.25333,0.03333 0.46,0.05 0.62,0.05v0c0.61333,0 1.10333,-0.20667 1.47,-0.62c0.36,-0.42 0.54,-1.09667 0.54,-2.03v0v-14.39l-2.3,-0.39v-1.8zM115.65,89.36v2.79h-2.79v-2.79z"></path></g><path d="M79.27,127.64v-48.28h46.46v48.28z" fill="#ff0000" stroke="#50e3c2" stroke-width="3" opacity="0"></path></g></g></svg>
+            <a class="grey-text text-lighten-4 right" href="#!">More Links</a>
+            </div>
+        </div>
+    </footer>
+  
+
+<!-- jQuery library -->
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+    <script
+    src="https://code.jquery.com/jquery-2.2.4.js"
+    integrity="sha256-iT6Q9iMJYuQiMWNd9lDyBUStIq/8PuOW33aOqmvFpqI="
+    crossorigin="anonymous"></script>
+
+<!-- Latest compiled JavaScript -->
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/js/bootstrap.min.js"></script>
+
+
+        <!--[if lt IE 7]>
+            <p class="browsehappy">You are using an <strong>outdated</strong> browser. Please <a href="#">upgrade your browser</a> to improve your experience.</p>
+        <![endif]-->
+        
+        <script src="" async defer></script>
+        
+    
+<canvas id="canvas"></canvas>
+
+    </body>
+    <!--<td class="tdStyle"> 
+    <body id="bg" style="background-image: url('{% static "js/back.jpg"%}')";>
+    </td>-->
+    <script type="text/javascript" src="{% static 'js/master.js' %}">
+
+    </script>
+    
+    
+</html>
