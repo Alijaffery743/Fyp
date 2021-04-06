@@ -1,19 +1,33 @@
-from django.contrib.auth import get_user_model
+from django import forms
 from django.contrib.auth.forms import UserCreationForm
+from django.db import transaction
+from django.forms.utils import ValidationError
+from .models import User,Student,Teacher
 
 
-class UserCreateForm(UserCreationForm):
-    class Meta:
-        fields=('username','email','password1','password2')
-        model=get_user_model()
+class TeacherSignUpForm(UserCreationForm):
+    class Meta(UserCreationForm.Meta):
+        model = User
+
+    def save(self, commit=True):
+        user = super().save(commit=False)
+        user.is_teacher = True
+        if commit:
+            user.save()
+        return user
 
 
-    def __init__(self, *args, **kwargs):
-        super().__init__(*args,**kwargs)
-        self.fields['username'].label ='Display Name'
-        self.fields['email'].label="Email Address"
-        
+class StudentSignUpForm(UserCreationForm):
+    
 
+    class Meta(UserCreationForm.Meta):
+        model = User
 
-        
-        
+    @transaction.atomic
+    def save(self):
+        user = super().save(commit=False)
+        user.is_student = True
+        user.save()
+        student = Student.objects.create(user=user)
+       #rests.add(*self.cleaned_data.get('interests'))
+        return user

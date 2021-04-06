@@ -17,6 +17,7 @@ from django.conf import settings
 from django.conf.urls.static import static
 from django.contrib import admin
 from . import views
+
 from django.urls import path,include
 
 urlpatterns = [
@@ -25,6 +26,8 @@ urlpatterns = [
     path('memberships/',include('memberships.urls',namespace='memberships')),
     path('accounts/',include('accounts.urls',namespace='accounts')),
     path('accounts/',include('django.contrib.auth.urls')),
+   
+     
     path('test/',views.TestPage.as_view(),name='test'),
     path('thanks',views.ThanksPage.as_view(),name='thanks'),
 

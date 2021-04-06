@@ -3,7 +3,7 @@ from django.contrib import messages
 from django.conf import settings
 from django.urls import reverse
 from django.shortcuts import redirect
-from django.http import HttpResponseRedirect 
+from django.http import HttpResponseRedirect
 from .models import Membership,UserMembership,Subscription
 import stripe
 # Create your views here.
@@ -44,8 +44,8 @@ def get_selected_membership(request):
     selected_membership_qs= Membership.objects.filter(membership_type=membership_type)
     if selected_membership_qs.exists():
         return selected_membership_qs.first()
-    return None 
-    
+    return None
+
 
 
 
@@ -162,6 +162,3 @@ def cancelSubscription(request):
     #Sending an email here
 
     return redirect('/memberships')
-
-
-
